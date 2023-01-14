@@ -11,4 +11,11 @@
         <maven.compiler.target>11</maven.compiler.target>
         <exec.mainClass>com.jsoup.Jsoup</exec.mainClass>
     </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.10.2</version>
+        </dependency>
+    </dependencies>
 </project>
