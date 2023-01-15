@@ -14,43 +14,45 @@ import org.jsoup.nodes.Element;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-
-        String html = "<html><head><title>JSOUP</title></head>"
-                + "<body><p>Convertendo string em HTML.</p>"
-                + "<p>Criando um arquivo index.html através da string convertida.</p>"
-                + "</body></html>";
-
-        Document document1 = Jsoup.parse(html);
         
-        System.out.println("***************************");
-        System.out.println(document1);
-        System.out.println("***************************");
-        System.out.print("Recuperando tag <title>: ");
-        System.out.println(document1.getElementsByTag("title"));
-        System.out.print("Recuperando tag <p>: ");
-        System.out.println(document1.getElementsByTag("p").get(0).text());
-        System.out.println("***************************");
         PrintStream printStream = new PrintStream("index.html");
-        printStream.print(document1);
-
-        Document document2 = Jsoup.connect("https://www.oracle.com/").get();
         
-        Informacao info1 = new Informacao(document2.getElementsByTag("h4").get(0).text(), document2.getElementsByTag("p").get(5).text());
+        Document document1 = Jsoup.connect("https://www.oracle.com/").get();
         
-        System.out.println(info1.getNome());
-        System.out.println(info1.getDescricao());
-        System.out.println("***************************");
-        Informacao info2 = new Informacao(document2.getElementsByTag("h4").get(1).text(), document2.getElementsByTag("p").get(6).text());
+        Element img1 = document1.select("img").get(0);
+        Informacao info1 = new Informacao(document1.getElementsByTag("h4").get(0).text(), document1.getElementsByTag("p").get(5).text(), img1.attr("data-src"));
         
-        System.out.println(info2.getNome());
-        System.out.println(info2.getDescricao());
-        System.out.println("***************************");
-        Informacao info3 = new Informacao(document2.getElementsByTag("h4").get(2).text(), document2.getElementsByTag("p").get(7).text());
+        Element img2 = document1.select("img").get(1);
+        Informacao info2 = new Informacao(document1.getElementsByTag("h4").get(1).text(), document1.getElementsByTag("p").get(6).text(), img2.attr("data-src"));
         
-        System.out.println(info3.getNome());
-        System.out.println(info3.getDescricao());
-        System.out.println("***************************");
+        Element img3 = document1.select("img").get(2);
+        Informacao info3 = new Informacao(document1.getElementsByTag("h4").get(2).text(), document1.getElementsByTag("p").get(7).text(), img3.attr("data-src"));
         
+        String html = "<html>"
+                + "<head>"
+                + "<title>JSOUP</title>"
+                + "</head>"
+                + "<body>"
+                + "<h1 style='text-align: center;'>Recuperando dados do site da Oracle e convertendo uma string em HTML5 via JSOUP.</h1>"
+                + "<br>"
+                + "<hr>"
+                + "<img src='" + info1.getImagem() + "'>"
+                + "<h3>" + info1.getNome() + "</h3>"
+                + "<p>" + info1.getDescricao() + "</p>"
+                + "<hr>"
+                + "<img src='" + info2.getImagem() + "'>"
+                + "<h3>" + info2.getNome() + "</h3>"
+                + "<p>" + info2.getDescricao() + "</p>"
+                + "<hr>"
+                + "<img src='" + info3.getImagem() + "'>"
+                + "<h3>" + info3.getNome() + "</h3>"
+                + "<p>" + info3.getDescricao() + "</p>"
+                + "<hr>"
+                + "</body>"
+                + "</html>";
         
+        Document document2 = Jsoup.parse(html);
+        
+        printStream.print(document2);
     }
 }

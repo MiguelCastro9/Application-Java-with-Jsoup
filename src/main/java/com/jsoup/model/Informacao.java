@@ -10,9 +10,12 @@ public class Informacao {
 
     private String descricao;
 
-    public Informacao(String nome, String descricao) {
+    private String imagem;
+
+    public Informacao(String nome, String descricao, String imagem) {
         this.nome = nome;
         this.descricao = descricao;
+        this.imagem = imagem;
     }
 
     public String getNome() {
@@ -29,6 +32,14 @@ public class Informacao {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 
 }
