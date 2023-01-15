@@ -2,7 +2,7 @@
 
 Exploring the <b>Jsoup</b> library.
 
-Ref.: https://jsoup.org/
+Reference: https://jsoup.org/
 
 ## Elements
 
